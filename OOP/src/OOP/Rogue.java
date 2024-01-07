@@ -1,11 +1,12 @@
 package OOP;
 
 public class Rogue extends Hero {
-    protected Rogue(String nameHero) {
+
+    public Rogue(String nameHero, int posX, int posY) {
         super(100,
                 100,
-                 5,
-                new int [] {20,30}, nameHero);
+                5,
+                new int [] {20,30}, nameHero, posX, posY);
     }
 
     @Override

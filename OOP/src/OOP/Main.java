@@ -8,45 +8,45 @@ public class Main {
     static ArrayList<Hero> heroesBlack = new ArrayList<>();
 
     public static void main(String[] args) {
-        heroesWhite = generateCommand(3);
-        heroesBlack = generateCommand(3);
+        heroesWhite = generateCommand(5, 0);
+        heroesBlack = generateCommand(5, 9);
 
         heroesWhite.forEach(n -> System.out.println(n.toString()));
         System.out.println("*******");
-        heroesBlack.forEach(n -> System.out.println(n.toString()));
+        heroesBlack.forEach(n -> n.printEnemysDistance(heroesWhite));
     }
 
     static String getName() {
         return NameOfHeroes.values()[new Random().nextInt(NameOfHeroes.values().length - 1)].toString();
     }
 
-    static ArrayList<Hero> generateCommand(int n) {
+    static ArrayList<Hero> generateCommand(int n, int y) {
         ArrayList<Hero> commandHeroes = new ArrayList<>();
         Random random = new Random();
         int rand;
         for (int i = 0; i < n; i++) {
-            rand = random.nextInt(5) + 1;
+            rand = random.nextInt(7) + 1;
             switch (rand) {
                 case 1:
-                    commandHeroes.add(new Crossbower(getName()));
+                    commandHeroes.add(new Crossbower(getName(), i,y));
                     break;
                 case 2:
-                    commandHeroes.add(new Monk(getName()));
+                    commandHeroes.add(new Monk(getName(), i, y));
                     break;
                 case 3:
-                    commandHeroes.add(new Peasant(getName()));
+                    commandHeroes.add(new Peasant(getName(), i, y));
                     break;
                 case 4:
-                    commandHeroes.add(new Wizard(getName()));
+                    commandHeroes.add(new Wizard(getName(), i, y));
                     break;
                 case 5:
-                    commandHeroes.add(new Pikeman(getName()));
+                    commandHeroes.add(new Pikeman(getName(), i,y));
                     break;
                 case 6:
-                    commandHeroes.add(new Sniper(getName()));
+                    commandHeroes.add(new Sniper(getName(), i, y));
                     break;
                 case 7:
-                    commandHeroes.add(new Rogue(getName()));
+                    commandHeroes.add(new Rogue(getName(), i, y));
                     break;
             }
         }

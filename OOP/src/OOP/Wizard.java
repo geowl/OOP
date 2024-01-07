@@ -1,13 +1,11 @@
 package OOP;
 
 public class Wizard extends Hero {
-    protected Wizard(String nameHero) {
-        super(50,
-                50,
-                2,
-                new int[]{-35, -30}, nameHero);
-        ;
+
+    public Wizard( String nameHero, int posX, int posY) {
+        super(50, 50, 2, new int [] {-35,-30}, nameHero, posX, posY);
     }
+
 
     @Override
     public String toString() {
