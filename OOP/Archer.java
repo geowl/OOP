@@ -30,7 +30,7 @@ public class Archer extends Hero {
 
             System.out.println(nameHero + " выстрелил в " + nearestEnemy.nameHero +
                     ". Осталось стрел: " + damage[1] +
-                    ". У " + nearestEnemy.nameHero + " осталось хп: " + nearestEnemy.health +
+                    " У " + nearestEnemy.nameHero + " осталось хп: " + nearestEnemy.health +
                     ", брони: " + nearestEnemy.armor);
         } else {
             System.out.println(nameHero + " НЕТ ПРОТИВНИКА В ЗОНЕ ВЫСТРЕЛА.");

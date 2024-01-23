@@ -52,34 +52,21 @@ public class Main {
         }
         return commandHeroes;
     }
+
+    ArrayList<Hero> units = new ArrayList<>();
     ArrayList<Hero> units = new ArrayList<Hero>();
-    units.add(new
+    units.add(new Crossbower(3));
+    units.add(new Sniper(3));
+    units.add(new Pikeman(2));
+    units.add(new Rogue(2));
+    units.add(new Monk(1));
+    units.add(new Wizard(1));
+    units.add (new Peasant(0));
 
-        void Crossbower(3));
-    units.add(new
-
-        void Sniper(3));
-    units.add(new
-
-        void Pikeman(2));
-    units.add(new
-
-        void Rogue(2));
-    units.add(new
-
-        void Monk(1));
-    units.add(new
-
-        void Wizard(1));
-    units.add(new
-
-        void Peasant(0));
-
-    units.sort(Comparator.comparingInt(unit ->((Initiative)unit).init));
-     for(
-        Unit unit :units)
-
-        {
+    units.sort(Comparator.comparingInt(unit ->((Initiative)unit).init))
+    {
+        for (Unit unit : units) {
             unit.step();
         }
     }
+}

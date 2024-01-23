@@ -5,6 +5,7 @@ public class Sniper extends Archer {
     public Sniper(String nameHero, int posX, int posY) {
         super(nameHero, posX, posY);
     }
+    }
 //public class Sniper extends Hero {
 //    public Sniper(String nameHero, int posX, int posY) {
 //        super(75,

@@ -7,6 +7,8 @@ public class Crossbower extends Archer {
 
     public Crossbower(String nameHero, int posX, int posY) {
         super(nameHero, posX, posY);
+    }
+    }
 
 //public class Crossbower extends Hero {
 //    protected int rangeMaxDamage = 4;
@@ -39,5 +41,3 @@ public class Crossbower extends Archer {
 //    public String toString() {
 //        return "Арбалетчик: " + this.nameHero + " Здоровье: " + this.health + "/" + this.healthMax + " Броня: " + this.armor;
 //    }
-
-
