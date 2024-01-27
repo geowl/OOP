@@ -6,6 +6,14 @@ public abstract class Hero implements GameI {
     public void step() {
 
     }
+
+    public  abstract  String getInfo();
+
+    public int getHp() {
+    }
+
+    public double[] getCoords() {
+    }
 }
 public abstract class Hero {
 
@@ -30,5 +38,12 @@ public abstract class Hero {
 
     }
 
+    public int [] getCoords() {
+        return new int[]{position.posX, position.posY};
+    }
+
+    public int getHp() {
+        return health;
+    }
 }
 

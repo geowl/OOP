@@ -6,6 +6,11 @@ public class Pikeman extends Infantry {
     public Pikeman(String nameHero, int posX, int posY) {
         super(nameHero, posX, posY);
     }
+
+    @Override
+    public String getInfo() {
+        return "Копейщик";
+    }
 }
 
 

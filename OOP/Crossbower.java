@@ -5,10 +5,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 public class Crossbower extends Archer {
 
+
     public Crossbower(String nameHero, int posX, int posY) {
         super(nameHero, posX, posY);
     }
+
+    @Override
+    public String getInfo() {
+        return "Арбалетчик";
     }
+}
+
 
 //public class Crossbower extends Hero {
 //    protected int rangeMaxDamage = 4;

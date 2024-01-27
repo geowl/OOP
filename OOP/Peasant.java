@@ -8,10 +8,11 @@ public class Peasant extends Hero{
                 1,
                 new int [] {0,0}, nameHero, posX, posY);
     }
-    @Override
-    public String toString() {
-        return ("Крестьянин: " + nameHero + " " + "Здоровье: " + health + "/" + healthMax + " " + "Броня: " + armor);
-    }
-}
+
+//    @Override
+//    public String toString() {
+//        return ("Крестьянин: " + nameHero + " " + "Здоровье: " + health + "/" + healthMax + " " + "Броня: " + armor);
+//    }
+//}
 
 

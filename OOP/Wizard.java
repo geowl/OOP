@@ -6,6 +6,11 @@ public class Wizard extends Healer{
     public Wizard(int healthMax, int armor, int initiative, int[] damage, String nameHero, int posX, int posY) {
         super(healthMax, armor, initiative, damage, nameHero, posX, posY);
     }
+
+    @Override
+    public String getInfo() {
+        return "Колдун";
+    }
 }
 
 

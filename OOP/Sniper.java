@@ -5,7 +5,12 @@ public class Sniper extends Archer {
     public Sniper(String nameHero, int posX, int posY) {
         super(nameHero, posX, posY);
     }
+
+    @Override
+    public String getInfo() {
+        return "Снайпер";
     }
+}
 //public class Sniper extends Hero {
 //    public Sniper(String nameHero, int posX, int posY) {
 //        super(75,

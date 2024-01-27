@@ -5,6 +5,11 @@ public class Rogue extends Infantry {
     public Rogue(String nameHero, int posX, int posY) {
         super(nameHero, posX, posY);
     }
+
+    @Override
+    public String getInfo() {
+        return "Разбойник";
+    }
 }
 
 

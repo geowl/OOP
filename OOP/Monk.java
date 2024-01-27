@@ -6,6 +6,11 @@ public class Monk extends Healer{
     public Monk(int healthMax, int armor, int initiative, int[] damage, String nameHero, int posX, int posY) {
         super(healthMax, armor, initiative, damage, nameHero, posX, posY);
     }
+
+    @Override
+    public String getInfo() {
+        return "Монах";
+    }
 }
 //
 //    public Monk(String nameHero, int posX, int posY) {
