@@ -12,7 +12,7 @@ public class Crossbower extends Archer {
 
     @Override
     public String getInfo() {
-        return "Арбалетчик";
+        return "Арбалетчик" + nameHero;
     }
 }
 

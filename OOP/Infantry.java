@@ -2,9 +2,9 @@ package OOP;
 
 import java.util.ArrayList;
 
-public class Infantry extends Hero {
+public abstract class Infantry extends Hero {
 
-    private String currentDirection = "Начальное направление: ВВЕРХ";
+    private final String currentDirection = "Начальное направление: ВВЕРХ";
 
     public Infantry(String nameHero, int posX, int posY) {
         super(75, 75, 5, new int[]{20, 35}, nameHero, posX, posY);
@@ -37,7 +37,7 @@ public class Infantry extends Hero {
         }
     }
 
-    private void move(ArrayList<Hero> enemies) {
+    protected void move(ArrayList<Hero> enemies) {
         if (enemies.isEmpty()) {
             return;
         }
@@ -64,4 +64,13 @@ public class Infantry extends Hero {
             }
         }
     }
+
+    @Override
+    public String getInfo() {
+        return null;
+    }
+
+    protected abstract Hero findNearestEnemy(ArrayList<Hero> enemies);
+    protected abstract void attack(Hero enemy);
+    protected abstract int calculateDamage(Hero enemy);
 }

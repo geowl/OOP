@@ -8,7 +8,7 @@ public class Rogue extends Infantry {
 
     @Override
     public String getInfo() {
-        return "Разбойник";
+        return "Разбойник" + nameHero;
     }
 }
 

@@ -9,7 +9,7 @@ public class Pikeman extends Infantry {
 
     @Override
     public String getInfo() {
-        return "Копейщик";
+        return "Копейщик" + nameHero;
     }
 }
 

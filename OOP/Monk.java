@@ -9,7 +9,7 @@ public class Monk extends Healer{
 
     @Override
     public String getInfo() {
-        return "Монах";
+        return "Монах" + nameHero;
     }
 }
 //

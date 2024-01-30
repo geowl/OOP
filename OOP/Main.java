@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         heroesWhite = generateCommand(0, 1);
         heroesBlack = generateCommand(3, 10);
-        ArrayList<Hero> twoCommands = new ArrayList<>();
+        twoCommands = new ArrayList<>();
         twoCommands.addAll(heroesBlack);
         twoCommands.addAll(heroesWhite);
         twoCommands.sort(new Comparator<Hero>() {
@@ -69,11 +69,9 @@ public class Main {
 
             }
         }
-
         heroesWhite.forEach(n -> System.out.println(n.toString()));
         System.out.println("*******");
         heroesBlack.forEach(n -> n.printEnemysDistance(heroesWhite));
-    }
 
     static String getName() {
         return NameOfHeroes.values()[new Random().nextInt(NameOfHeroes.values().length - 1)].toString();

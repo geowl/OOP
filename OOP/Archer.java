@@ -2,11 +2,18 @@ package OOP;
 
 import java.util.ArrayList;
 
-public class Archer extends Hero {
+public abstract class Archer extends Hero {
+    private int arrows = 0;
 
-    public Archer(String nameHero, int posX, int posY) {
+    public Archer(int healthMax, int armor, int[] damage, String nameHero, int posX, int posY) {
         super(75, 75, 0, new int[]{0, 0}, nameHero, posX, posY);
     }
+
+    @Override
+    public abstract void attack(Hero enemy);
+
+    @Override
+    public abstract int calculateDamage(Hero enemy);
 
     @Override
     public void step(ArrayList<Hero> enemies) {
@@ -16,6 +23,7 @@ public class Archer extends Hero {
             System.out.println("У " + nameHero + " нет стрел.");
             return;
         }
+
         Hero nearestEnemy = findNearestEnemy(enemies);
         if (nearestEnemy != null) {
             attack(nearestEnemy);
@@ -34,6 +42,20 @@ public class Archer extends Hero {
                     ", брони: " + nearestEnemy.armor);
         } else {
             System.out.println(nameHero + " НЕТ ПРОТИВНИКА В ЗОНЕ ВЫСТРЕЛА.");
+        }
+    }
+
+    public void addArrowFromPeasants(ArrayList<Hero> Peasant) {
+        for (Hero hero : Peasant) {
+            if (hero instanceof Peasant) {
+                Peasant peasant = (Peasant) hero;
+                if (peasant.isAlive() && peasant.isReady()) {
+                    peasant.raiseReadyFlag();
+                    arrows++;
+                    System.out.println(" получил стрелу от крестьянина ");
+                    break;
+                }
+            }
         }
     }
 

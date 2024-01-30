@@ -8,7 +8,7 @@ public class Sniper extends Archer {
 
     @Override
     public String getInfo() {
-        return "Снайпер";
+        return "Снайпер" + nameHero;
     }
 }
 //public class Sniper extends Hero {

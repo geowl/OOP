@@ -9,7 +9,7 @@ public class Wizard extends Healer{
 
     @Override
     public String getInfo() {
-        return "Колдун";
+        return "Колдун" + nameHero;
     }
 }
 
