@@ -2,8 +2,11 @@ package OOP;
 
 import java.util.Random;
 
-abstract class Healer extends Hero implements HelpHelear {
-
+abstract class Healer extends Hero implements HelpHelear, Initiative {
+    @Override
+    public int getInitiative() {
+        return this.init;
+    }
     private int[] healings = {30, 35};
     private double[] reviveChances = {0.2, 1};
     private static final Random random = new Random();
@@ -35,7 +38,6 @@ abstract class Healer extends Hero implements HelpHelear {
         return reviveChances[random.nextInt(reviveChances.length)];
     }
 
-    // Реализация методов Healable
     @Override
     public boolean isAlive() {
         return health > 0;

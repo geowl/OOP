@@ -1,50 +1,66 @@
 package OOP;
 
+import java.util.Random;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 public class Crossbower extends Archer {
 
+    private boolean poisonedArrowActive = false;
 
     public Crossbower(String nameHero, int posX, int posY) {
         super(nameHero, posX, posY);
     }
+    public void applyDamage(Hero enemy, int damage) {
+        System.out.println(enemy.getInfo() + " получил урон: " + damage);
+        enemy.health -= damage;
+        if (enemy.health <= 0) {
+            System.out.println(enemy.getInfo() + " ПОМЕР");
+        }
+    }
+
+    @Override
+    protected void attack(Hero enemy) {
+        System.out.println(getInfo() + " атаковал " + enemy.getInfo());
+
+        if (isPoisonedArrow()) {
+            System.out.println("Отравленная стрела " + enemy.getInfo() + " отравлен.");
+            poisonedArrowActive = true;
+        } else {
+            int damageToEnemy = calculateDamage(enemy);
+            applyDamage(enemy, damageToEnemy);
+        }
+
+        if (poisonedArrowActive) {
+            System.out.println("Отравленная стрела наносит урон " + enemy.getInfo());
+            int poisonDamage = calculatePoisonDamage();
+            applyDamage(enemy, poisonDamage);
+            if (poisonedArrowActive) {
+                poisonedArrowActive = false;
+            }
+        }
+    }
+
+    private boolean isPoisonedArrow() {
+        Random random = new Random();
+        int chance = random.nextInt(100) + 1;
+        return chance <= 10;
+    }
+
+    private int calculatePoisonDamage() {
+        return 15;
+    }
+
+    @Override
+    protected int calculateDamage(Hero enemy) {
+        return damage[0];
+    }
+
+    @Override
+    public int getInit() {
+        return 0;
+    }
 
     @Override
     public String getInfo() {
-        return "Арбалетчик" + nameHero;
+        return "Арбалетчик " + nameHero;
     }
 }
-
-
-//public class Crossbower extends Hero {
-//    protected int rangeMaxDamage = 4;
-//    protected Vector2 position;
-//
-//    public Crossbower(String nameHero, int posX, int posY) {
-//        super(75, 75, 5, new int[]{10, 15}, nameHero, posX, posY);
-//        this.position = new Vector2(posX, posY);
-//    }
-//
-//    public Hero findNearestEnemy(ArrayList<Hero> enemies) {
-//        Hero nearestEnemy = null;
-//        double minDistance = Double.MAX_VALUE;
-//        Vector2 myPosition = this.position;
-//        Iterator var6 = enemies.iterator();
-//
-//        while(var6.hasNext()) {
-//            Hero enemy = (Hero)var6.next();
-//            Vector2 enemyPosition = enemy.position;
-//            float distance = myPosition.rangeEnemy(enemyPosition);
-//            if ((double)distance < minDistance) {
-//                minDistance = (double)distance;
-//                nearestEnemy = enemy;
-//            }
-//        }
-//
-//        return nearestEnemy;
-//    }
-//
-//    public String toString() {
-//        return "Арбалетчик: " + this.nameHero + " Здоровье: " + this.health + "/" + this.healthMax + " Броня: " + this.armor;
-//    }

@@ -1,8 +1,8 @@
 package OOP;
 
-public abstract class Initiative implements GameI{
-    public int init;
-    public Initiative(int init){
-        this.init = init;
-    }
+import java.util.ArrayList;
+
+public interface Initiative {
+    int getInit();
+    void step(ArrayList<Hero> enemies);
 }

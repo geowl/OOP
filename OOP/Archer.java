@@ -2,18 +2,19 @@ package OOP;
 
 import java.util.ArrayList;
 
-public abstract class Archer extends Hero {
+public abstract class Archer extends Hero implements Initiative {
+    private int init;
     private int arrows = 0;
 
-    public Archer(int healthMax, int armor, int[] damage, String nameHero, int posX, int posY) {
-        super(75, 75, 0, new int[]{0, 0}, nameHero, posX, posY);
+    public Archer(int healthMax, int armor, int[] damage, String nameHero, int posX, int posY, int init) {
+        super(75, 75, 0, new int[]{30, 45}, nameHero, posX, posY);
+        this.init = init;
     }
 
     @Override
-    public abstract void attack(Hero enemy);
-
-    @Override
-    public abstract int calculateDamage(Hero enemy);
+    public int getInit() {
+        return this.init;
+    }
 
     @Override
     public void step(ArrayList<Hero> enemies) {
@@ -26,8 +27,9 @@ public abstract class Archer extends Hero {
 
         Hero nearestEnemy = findNearestEnemy(enemies);
         if (nearestEnemy != null) {
-            attack(nearestEnemy);
             damage[1]--;
+            attack(nearestEnemy);
+
             int damageToEnemy = calculateDamage(nearestEnemy);
 
             if (nearestEnemy.armor > 0) {
@@ -37,7 +39,7 @@ public abstract class Archer extends Hero {
             }
 
             System.out.println(nameHero + " выстрелил в " + nearestEnemy.nameHero +
-                    ". Осталось стрел: " + damage[1] +
+                    " Осталось стрел: " + damage[1] +
                     " У " + nearestEnemy.nameHero + " осталось хп: " + nearestEnemy.health +
                     ", брони: " + nearestEnemy.armor);
         } else {
@@ -52,7 +54,7 @@ public abstract class Archer extends Hero {
                 if (peasant.isAlive() && peasant.isReady()) {
                     peasant.raiseReadyFlag();
                     arrows++;
-                    System.out.println(" получил стрелу от крестьянина ");
+                    System.out.println(nameHero + " получил стрелу от крестьянина ");
                     break;
                 }
             }
@@ -75,5 +77,11 @@ public abstract class Archer extends Hero {
         }
 
         return nearestEnemy;
+    }
+
+    protected void attack(Hero enemy) {
+    }
+    protected int calculateDamage(Hero enemy) {
+        return damage[0];
     }
 }

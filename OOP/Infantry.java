@@ -2,8 +2,11 @@ package OOP;
 
 import java.util.ArrayList;
 
-public abstract class Infantry extends Hero {
-
+public abstract class Infantry extends Hero implements Initiative{
+    @Override
+    public int getInitiative() {
+        return this.init;
+    }
     private final String currentDirection = "Начальное направление: ВВЕРХ";
 
     public Infantry(String nameHero, int posX, int posY) {

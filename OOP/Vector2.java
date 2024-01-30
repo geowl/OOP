@@ -3,9 +3,9 @@ package OOP;
 public class Vector2 {
     int posX, posY;
 
-    public Vector2(int posX, int poxY) {
+    public Vector2(int posX, int posY) {
         this.posX = posX;
-        this.posY = poxY;
+        this.posY = posY;
     }
     public int getX() {
         return posX;
