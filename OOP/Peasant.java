@@ -6,9 +6,10 @@ public class Peasant extends Hero implements Initiative {
         return this.init;
     }
     private boolean ready = true;
-    public Peasant(String nameHero, int posX, int posY) {
+    public Peasant(String nameHero, int posX, int posY, int init) {
         super(100,
                 100,
+                init,
                 1,
                 new int[]{0, 0}, nameHero, posX, posY);
     }

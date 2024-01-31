@@ -3,8 +3,8 @@ package OOP;
 
 public class Pikeman extends Infantry {
 
-    public Pikeman(String nameHero, int posX, int posY) {
-        super(nameHero, posX, posY);
+    public Pikeman(String nameHero, int posX, int posY,int init) {
+        super(100,100,5,new int[] {20,30}, nameHero, posX, posY,init);
     }
 
     @Override

@@ -3,18 +3,19 @@ package OOP;
 import java.util.ArrayList;
 
 public abstract class Infantry extends Hero implements Initiative{
+    protected int init;
     @Override
-    public int getInitiative() {
+    public int getInit() {
         return this.init;
     }
     private final String currentDirection = "Начальное направление: ВВЕРХ";
 
-    public Infantry(String nameHero, int posX, int posY) {
-        super(75, 75, 5, new int[]{20, 35}, nameHero, posX, posY);
+    protected Infantry(String nameHero, int healthMax, int health, int armor, int[] damage, int posX, int posY, int init) {
+        super(75,75,5, new int[]{20, 35}, nameHero, posX, posY,init);
     }
 
     @Override
-    public void step(ArrayList<Hero> enemies) {
+    public void step(ArrayList<Hero> enemies, ArrayList<Hero> allies) {
         if (health <= 0) {
             return;
         }

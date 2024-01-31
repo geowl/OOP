@@ -6,9 +6,10 @@ public class Crossbower extends Archer {
 
     private boolean poisonedArrowActive = false;
 
-    public Crossbower(String nameHero, int posX, int posY) {
-        super(nameHero, posX, posY);
+    public Crossbower (String nameHero, int posX, int posY, int init) {
+        super(nameHero,75,75,0, new int[]{19, 24}, posX, posY, init);
     }
+
     public void applyDamage(Hero enemy, int damage) {
         System.out.println(enemy.getInfo() + " получил урон: " + damage);
         enemy.health -= damage;
@@ -52,11 +53,6 @@ public class Crossbower extends Archer {
     @Override
     protected int calculateDamage(Hero enemy) {
         return damage[0];
-    }
-
-    @Override
-    public int getInit() {
-        return 0;
     }
 
     @Override

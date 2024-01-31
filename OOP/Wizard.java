@@ -1,18 +1,28 @@
 package OOP;
 
-public class Wizard extends Healer{
+public class Wizard extends Helear {
 
-
-    public Wizard(int healthMax, int armor, int initiative, int[] damage, String nameHero, int posX, int posY) {
-        super(healthMax, armor, initiative, damage, nameHero, posX, posY);
+    public Wizard(String nameHero, int posX, int posY,int init) {
+        super(nameHero,
+                50,
+                50,
+                0,
+                0,
+                new int[]{-10, -15},
+                posY,
+                posY,
+                2,
+                7,
+                3,
+                100,
+                100,
+                5, init);
     }
-
     @Override
-    public String getInfo() {
-        return "Колдун" + nameHero;
+    public String toString() {
+        return "Wizard" + super.toString();
     }
 }
-
 
 //public class Wizard extends Hero {
 //

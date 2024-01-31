@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Sniper extends Archer {
 
-    public Sniper(String nameHero, int posX, int posY) {
-        super(nameHero, posX, posY);
+    public Sniper (String nameHero, int posX, int posY, int init) {
+        super(nameHero,75,75,0, new int[]{20, 30}, posX, posY, init);
     }
     public void applyDamage(Hero enemy, int damage) {
         System.out.println(enemy.getInfo() + " получил урон: " + damage);

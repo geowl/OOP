@@ -6,18 +6,28 @@ public abstract class Archer extends Hero implements Initiative {
     private int init;
     private int arrows = 0;
 
-    public Archer(int healthMax, int armor, int[] damage, String nameHero, int posX, int posY, int init) {
-        super(75, 75, 0, new int[]{30, 45}, nameHero, posX, posY);
+//    public Archer(String nameHero, int posX, int posY) {
+//        super(75, 75, 0, new int[]{30, 45}, nameHero, posX, posY);
+//        this.init = 0;
+////    }
+//rotected Hero(int health, int healthMax, int armor, int[] damage, String nameHero, int posX, int posY) {
+//    this.health = health;
+//    this.healthMax = healthMax;
+//    this.armor = armor;
+//    this.damage = damage;
+//    this.nameHero = nameHero;
+//    this.position = new Vector2(posX, posY);
+    protected Archer(String nameHero, int healthMax, int health, int armor, int[] damage, int posX, int posY, int init) {
+        super(health, healthMax, armor, new int[] {}, nameHero, posX, posY, init);
         this.init = init;
     }
-
     @Override
     public int getInit() {
         return this.init;
     }
 
     @Override
-    public void step(ArrayList<Hero> enemies) {
+    public void step(ArrayList<Hero> enemies, ArrayList<Hero> allies) {
         if (health <= 0) {
             return;
         } else if (damage[1] <= 0) {

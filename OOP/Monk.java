@@ -1,17 +1,30 @@
 package OOP;
 
-
-public class Monk extends Healer{
-
-    public Monk(int healthMax, int armor, int initiative, int[] damage, String nameHero, int posX, int posY) {
-        super(healthMax, armor, initiative, damage, nameHero, posX, posY);
+public class Monk extends Helear {
+    public Monk(String nameHero, int posX, int posY,int init) {
+        super(nameHero,
+                50,
+                50,
+                0,
+                0,
+                new int[]{-10, -15},
+                posY,
+                posY,
+                2,
+                7,
+                3,
+                100,
+                100,
+                5, init);
     }
 
     @Override
-    public String getInfo() {
-        return "Монах" + nameHero;
+    public String toString() {
+        return "Monk" + super.toString();
     }
 }
+
+
 //
 //    public Monk(String nameHero, int posX, int posY) {
 //        super(50,

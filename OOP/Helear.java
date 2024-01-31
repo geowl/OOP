@@ -1,55 +1,101 @@
 package OOP;
 
-import java.util.Random;
+import java.util.Objects;
+import java.util.ArrayList;
 
-abstract class Healer extends Hero implements HelpHelear, Initiative {
-    @Override
-    public int getInitiative() {
-        return this.init;
+public abstract class Helear extends Hero {
+    protected int healPoint, maxRangeHeal, mana, maxMana, manaRecovery;
+
+    public Helear(String name, int healthMax, int health, int armor, int[] damage, int posX, int posY, int init, int healPoint, int maxRangeHeal, int mana, int maxMana, int manaRecovery) {
+        super(healthMax, health, armor, damage, name, posX, posY, init);
+        this.healPoint = healPoint;
+        this.maxRangeHeal = maxRangeHeal;
+        this.mana = mana;
+        this.maxMana = maxMana;
+        this.manaRecovery = manaRecovery;
     }
-    private int[] healings = {30, 35};
-    private double[] reviveChances = {0.2, 1};
-    private static final Random random = new Random();
-
-    public Healer(int healthMax, int armor, int initiative, int[] damage, String nameHero, int posX, int posY) {
-        super(healthMax, armor, initiative, damage, nameHero, posX, posY);
+    protected int getHealthMax(Hero hero) {
+        return hero.healthMax;
+    }
+    protected void resurrect(Hero hero) {
+        int resurrectionAmount = calculateHealingAmount(getHealthMax(hero));
+        hero.health += resurrectionAmount;
+        mana -= getHealthMax(hero);
+    }
+    protected void regenerateMana() {
+        mana += manaRecovery;
+        if (mana > maxMana) mana = maxMana;
     }
 
-    public void heal(Hero allies) {
-        if (allies.isAlive()) {
-            int healingAmount = getRandomHealing();
-            allies.receiveHealing(healingAmount);
-            System.out.println(this.nameHero() + " лечит " + allies.nameHero() + " на + " + healingAmount + " хп");
+    protected boolean canHeal(Hero hero) {
+        double distance = position.rangeEnemy(hero.position);
+        return (distance < maxRangeHeal) && (hero.getHp() < healthMax - healPoint) && (mana >= healPoint);
+    }
+
+    protected boolean isAllAlliesDead(ArrayList<Hero> allies) {
+        boolean isAnyAlly = false;
+
+        for (Hero ally : allies) {
+            if (ally != this && ally.getHp() > 0) {
+                isAnyAlly = true;
+                return false;
+            }
         }
+
+        return !isAnyAlly;
     }
 
-    private int getRandomHealing() {
-        return healings[random.nextInt(healings.length)];
-    }
+    protected void helpNearestDeadAlly(ArrayList<Hero> allies) {
+        Hero nearestDeadAlly = findNearestDeadAlly(allies);
 
-    public void revive(Hero allies) {
-        if (!allies.isAlive() && random.nextDouble() < getRandomReviveChance()) {
-            allies.resurrect();
-            System.out.println(this.nameHero() + " воскрешает " + allies.nameHero());
+        double distanceToNearestDeadAlly = position.rangeEnemy(nearestDeadAlly.position);
+
+        if (distanceToNearestDeadAlly < maxRangeHeal) {
+            if (mana >= nearestDeadAlly.healthMax) {
+                resurrect(nearestDeadAlly);
+                return;
+            }
+            return;
         }
+
+        Vector2 nextPosition = findNextPosition(nearestDeadAlly, allies);
+        boolean stepIsFree = isStepFree(nextPosition, allies);
+        if (stepIsFree) position = nextPosition;
     }
 
-    private double getRandomReviveChance() {
-        return reviveChances[random.nextInt(reviveChances.length)];
+    private Hero findNearestDeadAlly(ArrayList<Hero> allies) {
+        Hero nearestDeadAlly = null;
+        double minDistance = Double.MAX_VALUE;
+
+        for (Hero ally : allies) {
+            if (ally != this && ally.getHp() <= 0) {
+                double distance = position.rangeEnemy(ally.position);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    nearestDeadAlly = ally;
+                }
+            }
+        }
+
+        return nearestDeadAlly;
     }
 
-    @Override
-    public boolean isAlive() {
-        return health > 0;
+    private int calculateHealingAmount(int amount) {
+        int healingAmount = amount + damage[0];
+        return healingAmount;
     }
 
-    @Override
-    public void receiveHealing(int amount) {
-        health = Math.min(health + amount, healthMax);
+    private Vector2 findNextPosition(Hero targetHero, ArrayList<Hero> allies) {
+        return new Vector2(position.getX(), position.getY() - 1);
     }
 
-    @Override
-    public void resurrect() {
-        health = healthMax;
+    private boolean isStepFree(Vector2 nextPosition, ArrayList<Hero> allies) {
+        for (Hero ally : allies) {
+            if (nextPosition.equals(ally.position)) {
+                return false;
+            }
+        }
+        return true;
     }
+
 }
